@@ -16,13 +16,13 @@ const options: NextAuthOptions = {
   },
   // Secure cookies will be automatically determined by NEXTAUTH_URL: true is https, false otherwise.
   //   useSecureCookies: true,
-//   jwt: {
-//     encryption: true,
-//     // Take a look to .env.local.example to see how to generate these keys
-//     encryptionKey: process.env.AUTH_JWT_ENCRYPTION_KEY,
-//     secret: process.env.AUTH_JWT_SECRET,
-//     signingKey: process.env.AUTH_JWT_SIGNING_KEY,
-//   },
+  jwt: {
+    encryption: true,
+    // Take a look to .env to see how to generate these keys
+    encryptionKey: process.env.AUTH_JWT_ENCRYPTION_KEY,
+    secret: process.env.AUTH_JWT_SECRET,
+    signingKey: process.env.AUTH_JWT_SIGNING_KEY,
+  },
   providers: [
     Providers.Credentials({
       name: "Miami Store Account",
@@ -46,7 +46,16 @@ const options: NextAuthOptions = {
       clientId: process.env.AUTH_GITHUB_ID,
       clientSecret: process.env.AUTH_GITHUB_SECRET,
     }),
-    // Providers.Google({}),
+    Providers.Google({
+      clientId: process.env.AUTH_GOOGLE_ID,
+      clientSecret: process.env.AUTH_GOOGLE_SECRET,
+    }),
+    // Providers.Email({
+    //   sendVerificationRequest: true,
+    //   server: {
+    //     host:
+    //   }
+    // })
   ],
 };
 

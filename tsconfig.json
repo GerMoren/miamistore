@@ -27,6 +27,6 @@
     },
     "experimentalDecorators": true
   },
-  "include": ["next-env.d.ts", "api/**/*.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "api/**/*.d.ts", "**/*.ts", "**/*.tsx", "pages/auth/signin.jsx"],
   "exclude": ["node_modules"]
 }

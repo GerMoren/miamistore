@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { Header } from "@components/Header/Header";
-// import { Footer } from '@components/Footer'
+import { Footer } from '@components/Footer'
 
 type LayoutProps = { title?: string };
 
@@ -27,7 +27,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, title }) => {
       <div className="local-container container mx-auto max-w-screen-xl w-95">
         <main className="pt-16">{children}</main>
       </div>
-      {/* <Footer className="absolute bottom-0 inset-x-0" /> */}
+      <Footer className="absolute bottom-0 inset-x-0" />
 
       {/* Keep the footer at the bottom */}
       <style jsx>{`

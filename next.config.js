@@ -5,7 +5,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 const config = {
   images: {
-    domains: ['images.ctfassets.net'],
+    domains: ['images.ctfassets.net', 'avatars.githubusercontent.com','lh3.googleusercontent.com'],
   },
   i18n: {
     locales: ['en-US', 'es'],

@@ -62,15 +62,19 @@ function Avatar({
     React.HTMLAttributes<HTMLDivElement>,
     HTMLDivElement
   >) {
+
   return (
     <div {...containerProps} className="flex items-center">
-      <NextImage
-        alt={name}
-        src={image}
-        width={32}
-        // style={{ height: '32px' }}
-        className="mr-1 rounded-full"
-      />
+      {image && (
+        <NextImage
+          alt={name}
+          src={image}
+          width={32}
+          height={32}
+          // style={{ height: "32px" }}
+          className="mr-1 rounded-full"
+        />
+      )}
       {children}
     </div>
   );
