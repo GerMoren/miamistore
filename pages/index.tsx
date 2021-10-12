@@ -5,6 +5,7 @@ import { searchProducts } from "@api/index";
 import { ResultsInterface } from "@api/searchResultInterface";
 import { Layout } from "@components/Layout";
 import { ProductsCollection } from "@components/ProductsCollection";
+import ErrorPage from "./_error";
 
 type HomeProps = {
   products: ResultsInterface[];
@@ -13,7 +14,7 @@ type HomeProps = {
 export const getStaticProps: GetStaticProps<HomeProps> = async ({ locale }) => {
   const i18nConf = await serverSideTranslations(locale!);
   const data = await searchProducts({
-    search_term: "t-shirt",
+    search_term: "macbook",
     merchant_id: "wrt",
     clear_cache: true,
   });
@@ -27,6 +28,10 @@ export const getStaticProps: GetStaticProps<HomeProps> = async ({ locale }) => {
 export default function Home({
   products,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
+  if (!products?.length) {
+    return <ErrorPage statusCode={404} />;
+  }
+
   return (
     <Layout>
       <ProductsCollection products={products} />

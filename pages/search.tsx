@@ -5,6 +5,7 @@ import { GetStaticProps } from "next";
 // import get from "lodash/get";
 import flatMap from "lodash/flatMap";
 // import clsx from "clsx";
+import useDebounce from "hooks/useDebounce";
 
 import {
   OutlinedInput,
@@ -33,12 +34,8 @@ export default function Search() {
   const { t } = useTranslation(["page-search"]);
   const [term, setTerm] = useState("shirt");
   const [data, setData] = useState<SearchResultInterface>();
-
-  // Debounce the search value.
-  // Remember: With lodash you must use either useCallback or useRef
   const searchTerm = useDebounce(term, 500);
 
-  // Use react-query to improve our http cache strategy and to make pagination easier
   useEffect(() => {
     searchProducts({
       search_term: searchTerm,
@@ -46,10 +43,11 @@ export default function Search() {
       clear_cache: false,
     }).then((res) => setData(res));
   }, [searchTerm]);
+
   const updateTerm: ChangeEventHandler<HTMLInputElement> = (event) =>
     setTerm(event.currentTarget.value);
 
-  const emptyResults = data?.results?.length === 0;
+  const emptyResults = !data?.results?.length;
 
   let results: ResultsInterface[] = [];
   if (data?.results != null) {
@@ -98,22 +96,4 @@ export default function Search() {
       )} */}
     </Layout>
   );
-}
-
-function useDebounce<T>(value: T, wait = 0) {
-  const [debouncedValue, setDebouncedValue] = useState(value);
-
-  useEffect(() => {
-    // Update the inner state after <wait> ms
-    const timeoutId = window.setTimeout(() => {
-      setDebouncedValue(value);
-    }, wait);
-
-    // Clear timeout in case a new value is received
-    return () => {
-      window.clearTimeout(timeoutId);
-    };
-  }, [value, wait]);
-
-  return debouncedValue;
 }

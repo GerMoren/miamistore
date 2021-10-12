@@ -1,6 +1,6 @@
-import { useCallback } from "react";
+// import { useCallback } from "react";
 import NextImage, {
-  ImageLoaderProps,
+  // ImageLoaderProps,
   ImageProps as NextImageProps,
 } from "next/image";
 
@@ -20,21 +20,22 @@ export function Image({
 }: ImageProps) {
   const height = calcAspectRatio(aspectRatio, width);
 
-  const imageLoader = useCallback(
-    (loaderArgs: ImageLoaderProps) => {
-      const h = calcAspectRatio(aspectRatio, loaderArgs.width);
+  // const imageLoader = useCallback(
+  //   (loaderArgs: ImageLoaderProps) => {
+  //     // const h = calcAspectRatio(aspectRatio, loaderArgs.width);
 
-      return `${loaderArgs.src}?w=${loaderArgs.width}&h=${h}&fit=${fit}`;
-    },
-    [aspectRatio, fit]
-  );
+  //     return loaderArgs.src
+  //     // ?w=${loaderArgs.width}&h=${h}&fit=${fit}`;
+  //   },
+  //   []
+  // );
 
   return (
     <NextImage
       {...nextImageProps}
       width={width}
       height={height}
-      loader={imageLoader}
+      // loader={imageLoader}
     />
   );
 }
@@ -61,6 +62,5 @@ const aspectRatioToRatio: Record<AspectRatio, number> = {
 
 function calcAspectRatio(aspectRatio: AspectRatio, width: number): number {
   const ratio = aspectRatioToRatio[aspectRatio];
-
   return Math.floor(width * ratio);
 }

@@ -3,7 +3,6 @@ import Link, { LinkProps } from "next/link";
 import { useTranslation } from "next-i18next";
 
 import { NavBar } from "./NavBar";
-import { PreviewModeBanner } from "./PreviewModeBanner";
 import { TopArea } from "./TopArea";
 
 import Button from "@material-ui/core/Button";
@@ -22,7 +21,6 @@ export function Header() {
   const { t } = useTranslation(["common"]);
   return (
     <>
-      <PreviewModeBanner />
       <div className="px-8 py-3">
         <TopArea />
       </div>

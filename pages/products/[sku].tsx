@@ -116,25 +116,25 @@ export default function ProductPage({
         <Grid item xs={12} md={8} lg={9} component="article">
           <figure>
             <Image
-              width={952}
-              aspectRatio="4:3"
-              layout="intrinsic"
-              src={product.images[0].src}
-              alt={product.images[0].alt}
+              width={550}
+              aspectRatio="1:1"
+              layout="responsive"
+              src={product?.images[0].src || ''}
+              alt={product?.images[0].alt}
             />
           </figure>
-          <div className="p-10">{product.large_description}</div>
+          <div className="p-10">{product?.large_description}</div>
         </Grid>
         <Grid item xs={12} md={4} lg={3} component="aside">
           <div className="px-2">
-            <Typography variant="h6">{product.name}</Typography>
+            <Typography variant="h6">{product?.name}</Typography>
           </div>
           <section className="px-2 pt-4">
             <Typography variant="h4" component="h3" className="mb-6">
-              {t('prices')}{' = U$S '}{product.prices.price}
+              {t('prices')}{' = U$S '}{product?.prices?.price}
             </Typography>
             <Typography variant="h4" component="h3" className="mb-6">
-              {t('discount')}{' = '}{product.prices.percentage}{'%'}
+              {t('discount')}{' = '}{product?.prices?.percentage}{'%'}
             </Typography>
           </section>
           {/* <section className="mt-10">

@@ -131,7 +131,6 @@ export function ProductEntryVertical({ image, name, sku }: ResultsInterface) {
             layout="responsive"
             aspectRatio="16:9"
             alt={name}
-            fit="crop"
           />
           <Typography variant="h2" className="break-words pt-4 px-4">
             {name}
